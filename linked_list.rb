@@ -121,15 +121,37 @@ class LinkedList
         count += 1
         current_node = current_node.next
       end
+      count
     end
   end
 
   def to_s #represent linked list as strings
+    current_node = @head
+    count = 1
+    until current_node.nil?
+      if current_node == @head
+        puts "Head: #{current_node}"
+        puts "Data: #{current_node.data}"
+        puts "Next Node: #{current_node.next}"
+        count += 1
+        current_node = current_node.next
+      elsif current_node == @tail
+        puts "Tail: #{current_node}"
+        puts "Data: #{current_node.data}"
+        puts "Next Node: nil"
+      else
+        puts "Current Node: #{current_node}"
+        puts "Data: #{current_node.data}"
+        puts "Next Node: #{current_node.next}"
+        count += 1
+        current_node = current_node.next
+      end
+    end
 
   end
 
   def insert_at(value, index) #inserts new node of provided value at given index
-
+    
   end
 
   def remove_at(index) #removes node at given index
