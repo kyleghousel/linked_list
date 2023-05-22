@@ -64,7 +64,7 @@ class LinkedList
 
   def at(index) #returns the node at the given index
     current_node = @head
-    count = 1
+    count = 0
     until count == index
       if count.nil? || index.nil?
         break
@@ -110,7 +110,7 @@ class LinkedList
 
   def find(value) #returns the index of the node containing value, or nil if not found.
     current_node = @head
-    count = 1
+    count = 0
     until current_node.nil?
       if current_node.data == value
         return true
@@ -127,7 +127,7 @@ class LinkedList
 
   def to_s #represent linked list as strings
     current_node = @head
-    count = 1
+    count = 0
     until current_node.nil?
       if current_node == @head
         puts "Head: #{current_node}"
@@ -150,12 +150,41 @@ class LinkedList
 
   end
 
-  def insert_at(value, index) #inserts new node of provided value at given index
-    
+  def insert_at_index(index, data)
+    new_node = Node.new(data)
+
+    if index == 0
+      new_node.next = @head
+      @head = new_node
+    else
+      current = @head
+      (index - 1).times do
+        break if current.next.nil?
+
+        current = current.next
+      end
+
+      new_node.next = current.next
+      current.next = new_node
+    end
   end
 
-  def remove_at(index) #removes node at given index
+  def remove_at_index(index)
+    return if @head.nil?
 
+    if index == 0
+      @head = @head.next
+    else
+      current = @head
+      (index - 1).times do
+        break if current.next.nil?
+
+        current = current.next
+      end
+
+      return if current.next.nil?
+
+      current.next = current.next.next
+    end
   end
-
 end
